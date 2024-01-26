@@ -90,4 +90,43 @@ movie = movie_merge(movie_rating, final_data)
 # Display the recommended movies
 st.dataframe(movie.head(10))
 ```
+### Movie Details
+Users can input a movie ID to view details about a specific movie. If the entered ID is valid, details about the selected movie are displayed, along with a link to MovieLens for more information.
 
+```python
+# Input for entering a movie ID
+mId = int(st.number_input("Enter Movie ID :"))
+
+# Checkbox for selecting a movie
+check_movie = st.checkbox('Movie Selected')
+
+# If a movie is selected
+if check_movie:
+    # If the movie ID is not in the index of 'movie'
+    if mId not in movie.index:
+        st.error("ENTER A VALID MOVIE ID")
+    else:
+        # Display the selected movie
+        movie_selected = movie.loc[[mId]]
+        st.write('MOVIE SELECTED :', movie_selected)
+        
+        # Display a link to the selected movie on movielens.org
+        link = 'https://movielens.org/movies/' + str(mId)
+        st.markdown(link, unsafe_allow_html=True)
+```
+Usage
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/movie-recommender-system.git
+cd movie-recommender-system
+```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+Run the Streamlit app:
+```bash
+streamlit run app.py
+```
+Interact with the app through the provided widgets and enjoy exploring movie recommendations!
