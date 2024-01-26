@@ -33,3 +33,61 @@ data = load_data()
 
 # Display the loaded data
 st.dataframe(data)
+```
+### Genre Filtering
+Users can select a preferred genre using the dropdown menu. The filter_by_genre function filters the loaded data based on the selected genre, and the results are displayed in real-time.
+
+```python
+# Function to filter data by selected genre
+@st.cache(allow_output_mutation=True)
+def filter_by_genre(data_filtered, genre_0):
+    data_filtered['IF_FOUND'] = data_filtered['genres'].str.find(genre_0)
+    data_filtered = data_filtered.loc[data_filtered['IF_FOUND'] != -1]
+    return data_filtered
+
+# Apply genre filter
+data = filter_by_genre(data, genres)
+```
+### Year Filtering
+Users can input a preferable release year, and the filter_by_year function filters the data accordingly. An optional warning is displayed if an invalid year is entered.
+```python
+# Function to filter data by selected year
+@st.cache(allow_output_mutation=True)
+def filter_by_year(data_filtered, year_0):
+    data_filtered['IF_FOUND'] = data_filtered['title'].str.find(year_0)
+    data_filtered = data_filtered.loc[data_filtered['IF_FOUND'] != -1]
+    return data_filtered
+
+# Apply year filter
+data = filter_by_year(data, year)
+```
+### Movie Recommendations
+The app provides a checkbox to trigger the recommendation process. User ratings data is loaded using the load_data0 function, and the movie_merge function merges movie ratings with the filtered data to create a list of recommended movies. The top 10 recommendations are displayed in a dataframe.
+
+```python
+# Function to load movie ratings data with caching
+@st.cache(allow_output_mutation=True)
+def load_data0():
+    ratings = './ratings.csv'
+    movie_rat0 = pd.read_csv(ratings, index_col='movieId', usecols=['movieId', 'rating'])
+    movie_rat0 = movie_rat0.sort_values by='rating', ascending=False)
+    return movie_rat0
+
+# Load movie ratings data
+movie_rating = load_data0()
+
+# Function to merge movie ratings and final data
+@st.cache(allow_output_mutation=True)
+def movie_merge(movie_rating0, final_data0):
+    movies = final_data0.merge(movie_rating0[['rating']], left_index=True, right_index=True)
+    movies = movies.drop_duplicates(subset='title', keep='first')
+    movies = movies.sort_values(by='rating', ascending=False)
+    return movies
+
+# Merge movie ratings and final data
+movie = movie_merge(movie_rating, final_data)
+
+# Display the recommended movies
+st.dataframe(movie.head(10))
+```
+
