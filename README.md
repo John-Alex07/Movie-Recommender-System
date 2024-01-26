@@ -133,7 +133,7 @@ Interact with the app through the provided widgets and enjoy exploring movie rec
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://github.com/John-Alex07/Medical_Diagnostic_Tool/blob/main/LICENSE).
 
 [MIT License](https://opensource.org/licenses/MIT)
 
