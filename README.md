@@ -130,3 +130,10 @@ Run the Streamlit app:
 streamlit run app.py
 ```
 Interact with the app through the provided widgets and enjoy exploring movie recommendations!
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+[MIT License](https://opensource.org/licenses/MIT)
+
