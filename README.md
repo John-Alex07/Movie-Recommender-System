@@ -127,7 +127,7 @@ pip install -r requirements.txt
 ```
 Run the Streamlit app:
 ```bash
-streamlit run app.py
+streamlit run MRS_GUI_local.py
 ```
 Interact with the app through the provided widgets and enjoy exploring movie recommendations!
 
